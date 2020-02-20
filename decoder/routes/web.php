@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'DecoderController@decoder')->name('decoder');
+
