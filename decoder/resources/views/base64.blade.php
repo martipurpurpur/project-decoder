@@ -29,4 +29,7 @@
     <div>
         <a href="{{ route('index_base64') }}">Decoder/encoder base64</a>
     </div>
+    <div>
+        <a href="{{ route('index') }}">Home</a>
+    </div>
 @endsection
