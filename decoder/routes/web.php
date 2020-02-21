@@ -11,5 +11,25 @@
 |
 */
 
-Route::get('/', 'DecoderController@decoder')->name('decoder');
+Route::get('/', function() {
+    return view('index');
+});
+
+Route::get('/rot', function() {
+    return view('rot');
+})->name('index_rot');
+Route::post('/rot', 'DecoderController@rotate')->name('rot');
+
+Route::get('/uue', function() {
+    return view('uue');
+})->name('index_uue');
+Route::post('/uue', 'DecoderController@uue')->name('uue');
+
+
+Route::get('/base64', function() {
+    return view('base64');
+})->name('index_base64');
+Route::post('/base64', 'DecoderController@base64')->name('base64');
+
+
 
