@@ -1,0 +1,27 @@
+.marti {
+    background-color: darkslateblue;
+    color: #f8f9fa;
+    margin-bottom: 30px;
+}
+.marti-links {
+    color: darkslateblue;
+}
+.marti-cards {
+    background-color: #f4b0af;
+    color: darkslateblue;
+
+}
+.pills {
+    background-color: #f4b0af;
+    color: darkslateblue;
+}
+.submit-pills {
+    margin: 10px;
+}
+.pills-size {
+    font-size: 20pt;
+}
+.marti-forms {
+    margin-top: 10px;
+}
+

@@ -1,35 +1,49 @@
 @extends('layouts.app')
 @section('content')
     <form method="POST" action="{{ route('base64') }}">
+        <div class="row">
+            <div class="col-2"></div>
+        <div class="col-4">
         {{ csrf_field() }}
-        <div class="form-group">
-            <label for="base64">Decode base64</label>
-            <input type="text" class="form-control" id="base64" name="base64" placeholder="base64">
+        <div class="form-group marti-forms">
+            <input type="text" class="form-control" id="base" name="base" placeholder="base64">
         </div>
-        <button type="submit" class="btn btn-primary">Go</button>
-        <div>answer</div>
-    </form>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4">{{ $textAnswer ?? '' }}</textarea>
 
-    <form method="POST" action="{{ route('base64') }}">
-        {{ csrf_field() }}
-        <div class="form-group">
-            <label for="text_form">Encode base64</label>
-            <input type="text" class="form-control" id="text_form" name="text_form" placeholder="text">
+           <span>
+       <button type="submit" class="badge-pill pills submit-pills">Submit</button>
+           </span>
+
         </div>
-        <button type="submit" class="btn btn-primary">Go</button>
-        <div>answer</div>
-    </form>
+        <div class="col-4">
+        <div class="form-group marti-forms">
+            <input type="text" class="form-control" id="text" name="text" placeholder="text">
+        </div>
 
-    <div>
-        <a href="{{ route('index_uue') }}">Decoder/encoder uue</a>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4">{{ $baseAnswer ?? '' }}</textarea>
+
+
+        </div>
     </div>
-    <div>
-        <a href="{{ route('index_rot') }}">Decoder/encoder rotN</a>
-    </div>
-    <div>
-        <a href="{{ route('index_base64') }}">Decoder/encoder base64</a>
-    </div>
-    <div>
-        <a href="{{ route('index') }}">Home</a>
-    </div>
+        <div class="col-2"></div>
+    </form>
+<footer>
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+        <li class="nav-item">
+            <a class="nav-link marti-links" href="{{ route('index') }}">Home</a>
+        </li>
+        <a class="nav-link marti-links" href="{{ route('index_uue') }}">Uue</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link marti-links" href="{{ route('index_rot') }}">rotN</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled badge-pill pills" href="{{ route('index_base64') }}">Base64</a>
+        </li>
+    </ul>
+</footer>
+
 @endsection
+
+

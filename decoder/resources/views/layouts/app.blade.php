@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">--}}
 
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">
 
@@ -22,13 +22,20 @@
         </ul>
     </div>
 @endif
-<header class="marti">
-    <h2 class="text-center">Online decoder/encoder</h2>
+<header class="marti text-center">
+    <h2>Online decoder/encoder</h2>
 </header>
-<div class="container m">
+
+<div class="container">
 @yield('content')
 </div>
-<footer><span>martipurpurpur</span></footer>
+
+<footer class="fixed-bottom text-center">
+    <span> Copyright © Martipurpurpur {{ date("Y") }}
+        <a href="#" class="marti-links">feedback</a>
+    </span>
+</footer>
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

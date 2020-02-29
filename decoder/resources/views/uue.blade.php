@@ -1,36 +1,47 @@
 @extends('layouts.app')
 @section('content')
     <form method="POST" action="{{ route('uue') }}">
-        {{ csrf_field() }}
-        <div class="form-group">
-            <label for="uue">Encode uue</label>
-            <input type="text" class="form-control" id="uue" name="uue" placeholder="uue">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-4">
+                {{ csrf_field() }}
+                <div class="form-group marti-forms">
+                    <input type="text" class="form-control" id="uue" name="uue" placeholder="uue">
+                </div>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4">{{ $textAnswer ?? '' }}</textarea>
+
+                <span>
+       <button type="submit" class="badge-pill pills submit-pills">Submit</button>
+           </span>
+
+            </div>
+            <div class="col-4">
+                <div class="form-group marti-forms">
+                    <input type="text" class="form-control" id="text" name="text" placeholder="text">
+                </div>
+
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4">{{ $uueAnswer ?? '' }}</textarea>
+
+
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Go</button>
-        <div>answer</div>
+        <div class="col-2"></div>
     </form>
+    <footer>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+            <li class="nav-item">
+                <a class="nav-link marti-links" href="{{ route('index') }}">Home</a>
+            </li>
+            <a class="nav-link disabled badge-pill pills" href="{{ route('index_uue') }}">Uue</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link marti-links" href="{{ route('index_rot') }}">rotN</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link marti-links" href="{{ route('index_base64') }}">Base64</a>
+            </li>
+        </ul>
+    </footer>
 
-    <form method="POST" action="{{ route('uue') }}">
-        {{ csrf_field() }}
-        <div class="form-group">
-            <label for="text_form2">Decode uue</label>
-            <input type="text" class="form-control" id="text_form2" name="text_form2" placeholder="text">
-        </div>
-        <button type="submit" class="btn btn-primary">Go</button>
-        <div>answer</div>
-    </form>
-
-
-    <div>
-        <a href="{{ route('index_uue') }}">Decoder/encoder uue</a>
-    </div>
-    <div>
-        <a href="{{ route('index_rot') }}">Decoder/encoder rotN</a>
-    </div>
-    <div>
-        <a href="{{ route('index_base64') }}">Decoder/encoder base64</a>
-    </div>
-    <div>
-        <a href="{{ route('index') }}">Home</a>
-    </div>
 @endsection

@@ -18,7 +18,7 @@ Route::get('/', function() {
 Route::get('/rot', function() {
     return view('rot');
 })->name('index_rot');
-Route::post('/rot', 'DecoderController@rotate')->name('rot');
+Route::post('/rot', 'DecoderController@rot')->name('rot');
 
 Route::get('/uue', function() {
     return view('uue');
