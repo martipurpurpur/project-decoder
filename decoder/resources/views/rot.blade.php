@@ -19,7 +19,7 @@
                 <div class="form-group marti-forms">
                     <input type="text" class="form-control" id="rot" name="rot" placeholder="rot">
                 </div>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4">{{ $textAnswer ?? '' }}</textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4">{{ $rotAnswer ?? '' }}</textarea>
                 <span>
                     <button type="submit" class="badge-pill pills submit-pills">Submit</button>
                 </span>
@@ -33,7 +33,7 @@
                     <input type="text" class="form-control" id="text" name="text" placeholder="text">
                 </div>
 
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4">{{ $rotAnswer ?? '' }}</textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4">{{ $textAnswer ?? '' }}</textarea>
 
 
             </div>

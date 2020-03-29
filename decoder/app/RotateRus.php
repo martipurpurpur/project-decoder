@@ -20,14 +20,14 @@ class RotateRus extends Rotate
         while ($rot >= count($alphaLow) - 1) {
             $rot -= count($alphaLow) - 1;
         }
-//mb_regex_encoding('UTF-8');
-//mb_internal_encoding("UTF-8");
+        //mb_regex_encoding('UTF-8');
+        //mb_internal_encoding("UTF-8");
         $textArray = preg_split('/(?<!^)(?!$)/u', $text);
 
         if ($minus) {
-        $result = self::decode($rot, $textArray, $alphaLow, $alphaHigh);
+        $result = parent::decode($rot, $textArray, $alphaLow, $alphaHigh);
         } else {
-        $result = self::encode($rot, $textArray, $alphaLow, $alphaHigh);
+        $result = parent::encode($rot, $textArray, $alphaLow, $alphaHigh);
     }
 
 

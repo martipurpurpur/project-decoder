@@ -23,9 +23,9 @@ class RotateEng extends Rotate
         $textArray = str_split($text);
 
         if ($minus) {
-            $result = self::decode($rot, $textArray, $alphaLow, $alphaHigh);
+            $result = parent::decode($rot, $textArray, $alphaLow, $alphaHigh);
         } else {
-            $result = self::encode($rot, $textArray, $alphaLow, $alphaHigh);
+            $result = parent::encode($rot, $textArray, $alphaLow, $alphaHigh);
         }
 
 
