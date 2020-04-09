@@ -6,7 +6,7 @@ namespace App;
 
 class RotateEng extends Rotate
 {
-    public static function rotate($text, $num, $minus)
+    public static function rotate($text, $num, $minus = False)
     {
         $alphaLow = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
             'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',

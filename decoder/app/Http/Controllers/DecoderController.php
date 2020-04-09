@@ -45,11 +45,11 @@ class DecoderController extends Controller
         $num_decode = $request->get('num-decode');
         $lang = $request->get('lang');
         if ($lang == 'eng') {
-            $rotAnswer = RotateEng::rotate($request->get('rot'), $num, False);
+            $rotAnswer = RotateEng::rotate($request->get('rot'), $num);
             $textAnswer = RotateEng::rotate($request->get('text'), $num_decode, True);
         }
         if ($lang == 'rus') {
-            $rotAnswer = RotateRus::rotate($request->get('rot'), $num, False);
+            $rotAnswer = RotateRus::rotate($request->get('rot'), $num);
             $textAnswer = RotateRus::rotate($request->get('text'), $num_decode, True);
         }
         return view('rot', ['textAnswer' => $textAnswer, 'rotAnswer' => $rotAnswer]);

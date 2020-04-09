@@ -17,13 +17,13 @@ class Rotate
             $searchHigh = array_search($textArray[$i], $alphaHigh);
             if ($searchLow) {
                 $searchLow += $rot;
-                if ($searchLow >= $count) {
+                while ($searchLow >= $count) {
                     $searchLow -= $count;
                 }
                 $result[] = $alphaLow[$searchLow];
             } elseif ($searchHigh) {
                 $searchHigh += $rot;
-                if ($searchHigh >= $count) {
+                while ($searchHigh >= $count) {
                     $searchHigh -= $count;
                 }
                 $result[] = $alphaHigh[$searchHigh];
@@ -36,21 +36,21 @@ class Rotate
     protected static function decode($rot, $textArray, $alphaLow, $alphaHigh)
     {
         $result = [];
-        $count = count($alphaLow) - 1;
+        $count = count($alphaLow);
         for ($i = 0; $i < count($textArray); $i++)
         {
             $searchLow = array_search($textArray[$i], $alphaLow);
             $searchHigh = array_search($textArray[$i], $alphaHigh);
             if ($searchLow) {
-                $searchLow -= $rot;
-                if ($searchLow >= $count) {
-                    $searchLow -= $count;
+                $searchLow -= abs($rot);
+                while ($searchLow < 0) {
+                    $searchLow += $count;
                 }
                 $result[] = $alphaLow[$searchLow];
             } elseif ($searchHigh) {
-                $searchHigh -= $rot;
-                if ($searchHigh >= $count) {
-                    $searchHigh -= $count;
+                $searchHigh -= abs($rot);
+                while ($searchHigh < 0) {
+                    $searchHigh += $count;
                 }
                 $result[] = $alphaHigh[$searchHigh];
             } else {
