@@ -7,13 +7,17 @@ use function Stringy\create as s;
 
 class Rotate
 {
-    private $rotNum, $alphabet, $text, $minus;
+    private $rotNum, $alphabet, $text;
 
     public function __construct($text, $rotNum, $lang, $minus = False)
     {
-        $this->rotNum = $rotNum;
+        if ($minus) {
+            $this->rotNum = - $rotNum;
+        }
+        else {
+            $this->rotNum = $rotNum;
+        }
         $this->text = $text;
-        $this->minus = $minus;
 
         switch ($lang) {
             case 'rus':
@@ -28,23 +32,13 @@ class Rotate
 
 
     }
-    private function rotateNum()
-    {
-        $count = $this->alphabet->getCountAlphabet();
-        if ($this->minus) {
-            return $count - $this->rotNum;
-        }
-        else {
-            return $this->rotNum;
-        }
-    }
 
     public function decode()
     {
         $result = [];
         $alphabet = $this->alphabet;
         $textArray = s($this->text)->chars();
-        $rot = $this->rotateNum();
+        $rot = $this->rotNum;
         $count = $alphabet->getCountAlphabet();
         $stateSymbol = False;
 
@@ -64,6 +58,10 @@ class Rotate
             }
 
             $newIndex = $rot + $index;
+
+            while ($newIndex < 0) {
+                $newIndex = $count + $newIndex;
+            }
             if ($newIndex >= $count) {
                 $newIndex = $newIndex % $count;
             }

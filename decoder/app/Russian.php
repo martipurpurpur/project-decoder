@@ -12,15 +12,13 @@ class Russian
     'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш',
     'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я'];
 
-    private const COUNT = 33;
-
     public function __construct()
     {
 
     }
     public function  getCountAlphabet ()
     {
-        return self::COUNT;
+        return count(self::ALPHABET);
     }
 
     public function getIndexInAlphabet ($symbol)
