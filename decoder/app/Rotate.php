@@ -3,60 +3,82 @@
 
 namespace App;
 
+use function Stringy\create as s;
 
 class Rotate
 {
+    private $rotNum, $alphabet, $text, $minus;
 
-    protected static function encode($rot, $textArray, $alphaLow, $alphaHigh)
+    public function __construct($text, $rotNum, $lang, $minus = False)
+    {
+        $this->rotNum = $rotNum;
+        $this->text = $text;
+        $this->minus = $minus;
+
+        switch ($lang) {
+            case 'rus':
+                $this->alphabet = new Russian();
+                break;
+            case 'eng':
+                $this->alphabet = new English();
+                break;
+            default:
+                break;
+        }
+
+
+    }
+    private function rotateNum()
+    {
+        $count = $this->alphabet->getCountAlphabet();
+        if ($this->minus) {
+            return $count - $this->rotNum;
+        }
+        else {
+            return $this->rotNum;
+        }
+    }
+
+    public function decode()
     {
         $result = [];
-        $count = count($alphaLow) - 1;
-        for ($i = 0; $i < count($textArray); $i++)
-        {
-            $searchLow = array_search($textArray[$i], $alphaLow);
-            $searchHigh = array_search($textArray[$i], $alphaHigh);
-            if ($searchLow) {
-                $searchLow += $rot;
-                while ($searchLow >= $count) {
-                    $searchLow -= $count;
-                }
-                $result[] = $alphaLow[$searchLow];
-            } elseif ($searchHigh) {
-                $searchHigh += $rot;
-                while ($searchHigh >= $count) {
-                    $searchHigh -= $count;
-                }
-                $result[] = $alphaHigh[$searchHigh];
-            } else {
-                $result[] = $textArray[$i];
+        $alphabet = $this->alphabet;
+        $textArray = s($this->text)->chars();
+        $rot = $this->rotateNum();
+        $count = $alphabet->getCountAlphabet();
+        $stateSymbol = False;
+
+        for ($i = 0; $i < count ($textArray); $i++) {
+
+            $useSymbol = s($textArray[$i]);
+
+            if ($useSymbol->isUpperCase()) {
+                $stateSymbol = True;
+                $useSymbol = $useSymbol->toLowerCase();
             }
-        }
-        return $result;
-    }
-    protected static function decode($rot, $textArray, $alphaLow, $alphaHigh)
-    {
-        $result = [];
-        $count = count($alphaLow);
-        for ($i = 0; $i < count($textArray); $i++)
-        {
-            $searchLow = array_search($textArray[$i], $alphaLow);
-            $searchHigh = array_search($textArray[$i], $alphaHigh);
-            if ($searchLow) {
-                $searchLow -= abs($rot);
-                while ($searchLow < 0) {
-                    $searchLow += $count;
-                }
-                $result[] = $alphaLow[$searchLow];
-            } elseif ($searchHigh) {
-                $searchHigh -= abs($rot);
-                while ($searchHigh < 0) {
-                    $searchHigh += $count;
-                }
-                $result[] = $alphaHigh[$searchHigh];
-            } else {
+            $index = $alphabet->getIndexInAlphabet($useSymbol);
+
+            if ($index === False) {
                 $result[] = $textArray[$i];
+                continue;
             }
+
+            $newIndex = $rot + $index;
+            if ($newIndex >= $count) {
+                $newIndex = $newIndex % $count;
+            }
+
+
+            $newSymbol = $alphabet->getCharFromAlphabet($newIndex);
+            if ($stateSymbol) {
+                $newSymbol = s($newSymbol)->toUpperCase();
+                $stateSymbol = False;
+            }
+
+            $result[] = $newSymbol;
         }
-        return $result;
+
+        return implode('', $result);
     }
+
 }

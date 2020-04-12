@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Rotate;
 use Illuminate\Http\Request;
-use App\RotateEng;
-use App\RotateRus;
 
 class DecoderController extends Controller
 {
@@ -41,18 +40,15 @@ class DecoderController extends Controller
             'rot' => 'max:1255',
             'text' => 'max:1255',
         ]);
+
         $num = $request->get('num');
         $num_decode = $request->get('num-decode');
         $lang = $request->get('lang');
-        if ($lang == 'eng') {
-            $rotAnswer = RotateEng::rotate($request->get('rot'), $num);
-            $textAnswer = RotateEng::rotate($request->get('text'), $num_decode, True);
-        }
-        if ($lang == 'rus') {
-            $rotAnswer = RotateRus::rotate($request->get('rot'), $num);
-            $textAnswer = RotateRus::rotate($request->get('text'), $num_decode, True);
-        }
-        return view('rot', ['textAnswer' => $textAnswer, 'rotAnswer' => $rotAnswer]);
+
+        $rotAnswer = new Rotate($request->get('rot'), $num, $lang);
+        $textAnswer = new Rotate($request->get('text'), $num_decode, $lang, True);
+
+        return view('rot', ['textAnswer' => $textAnswer->decode(), 'rotAnswer' => $rotAnswer->decode()]);
     }
 
 }
