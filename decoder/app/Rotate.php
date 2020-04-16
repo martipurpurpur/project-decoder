@@ -59,8 +59,8 @@ class Rotate
 
             $newIndex = $rot + $index;
 
-            while ($newIndex < 0) {
-                $newIndex = $count + $newIndex;
+            if ($newIndex < 0) {
+                $newIndex = $count - abs($newIndex % $count);
             }
             if ($newIndex >= $count) {
                 $newIndex = $newIndex % $count;
