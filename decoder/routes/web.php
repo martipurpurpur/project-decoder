@@ -32,4 +32,4 @@ Route::get('/base64', function() {
 Route::post('/base64', 'DecoderController@base64')->name('base64');
 
 
-
+URL::forceScheme('https');
