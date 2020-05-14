@@ -14,9 +14,13 @@ class DecoderController extends Controller
             'base' => 'max:1255',
             'text' => 'max:1255'
         ]);
+        $base = $request->get('base');
         $baseAnswer = base64_encode($request->get('text'));
         $textAnswer = base64_decode($request->get('base'));
 
+        if (!$textAnswer) {
+            $textAnswer = $base;
+        }
 
         return view('base64', ['textAnswer' => $textAnswer, 'baseAnswer' => $baseAnswer]);
     }
@@ -26,8 +30,14 @@ class DecoderController extends Controller
             'uue' => 'max:1255',
             'text' => 'max:1255'
         ]);
+        $uue = $request->get('uue');
         $uueAnswer = convert_uuencode($request->get('text'));
-        $textAnswer = convert_uudecode($request->get('uue'));
+        $textAnswer = @convert_uudecode($uue);
+
+        if (!$textAnswer) {
+            $textAnswer = $uue;
+        }
+
 
 
         return view('uue', ['textAnswer' => $textAnswer, 'uueAnswer' => $uueAnswer]);

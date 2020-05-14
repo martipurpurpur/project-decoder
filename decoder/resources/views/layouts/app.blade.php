@@ -5,12 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Bootstrap CSS -->
 {{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">--}}
-
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">
 
-    <title>Decoder/Encoder</title>
+    <title>Decoder-encoder</title>
 </head>
 <body>
 @if ($errors->any())
@@ -23,18 +25,20 @@
     </div>
 @endif
 <header class="marti text-center">
-    <h2>Online decoder/encoder</h2>
+    <h2>Decoder-encoder</h2>
 </header>
 
 <div class="container">
 @yield('content')
 </div>
 
+
 <footer class="fixed-bottom text-center">
     <span> Copyright © Martipurpurpur {{ date("Y") }}
-        <a href="#" class="marti-links">feedback</a>
+        <a href="mailto:marti@unoanimo.ru" class="marti-links">feedback</a>
     </span>
 </footer>
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
